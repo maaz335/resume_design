@@ -25,6 +25,7 @@ class resume_design extends StatefulWidget {
 }
 
 class _resume_designState extends State<resume_design> {
+  bool downloadButtonVisibility=true;
   Permission? permission;
   String firstName = "Sourabh".toUpperCase();
   String lastName = "Mehndiratta".toUpperCase();
@@ -615,30 +616,61 @@ class _resume_designState extends State<resume_design> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.height*0.2,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          )),
-                      onPressed: createPDF,
-                      child: Text("Download"),
+                  Visibility(
+                    visible: downloadButtonVisibility,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.height*0.2,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )),
+                        onPressed: ()async{
+                          if(downloadButtonVisibility==true){
+                            downloadButtonVisibility=false;
+                            setState(() {
+
+                            });
+                            await createPDF();
+                            downloadButtonVisibility=true;
+                            setState(() {
+
+                            });
+                          }
+                        },
+                        child: Text("Download"),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.height*0.2,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          )),
-                      onPressed: _takeScreenshotandShare,
-                      child: Text("Share"),
+                  Visibility(
+                    visible: downloadButtonVisibility,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.height*0.2,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )),
+                        onPressed: ()async{
+                          if(downloadButtonVisibility==true){
+                            downloadButtonVisibility=false;
+
+                            setState(() {
+
+                            });
+                            await _takeScreenshotandShare();
+                            downloadButtonVisibility=true;
+                            setState(() {
+
+                            });
+                          }
+                        },
+                        child: Text("Share"),
+                      ),
                     ),
                   ),
                 ],
@@ -653,7 +685,7 @@ class _resume_designState extends State<resume_design> {
   _takeScreenshotandShare([bool share = true]) async {
     _imageFile = null;
     screenshotController
-        .capture(delay: Duration(milliseconds: 10), pixelRatio: 2.0)
+        .capture(delay: Duration(milliseconds: 500), pixelRatio: 2.0)
         .then((Uint8List? image) async {
       setState(() {
         _imageFile = image;
@@ -685,7 +717,7 @@ class _resume_designState extends State<resume_design> {
 
     final imageSize = Size(imageBitmap.width.toDouble(), imageBitmap.height.toDouble());
     page.graphics.drawImage(
-        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,page.size.height));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
+        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,imageSize.height/1.6));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
 
     List<int> bytes = await document.save();
     document.dispose();
