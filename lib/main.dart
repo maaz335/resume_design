@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 
 void main() => runApp(
       MaterialApp(
+        theme: ThemeData(fontFamily: "Arail"),
         debugShowCheckedModeBanner: false,
         home: resume_design(),
       ),
@@ -135,19 +136,19 @@ class _resume_designState extends State<resume_design> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.7,
                       ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.159,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(120),
-                              topLeft: Radius.circular(150),
-                              bottomLeft: Radius.circular(80),
-                            )),
-                      ),
+                      // Container(
+                      //   height: MediaQuery.of(context).size.height * 0.159,
+                      //   width: MediaQuery.of(context).size.width * 0.3,
+                      //   decoration: BoxDecoration(
+                      //       border: Border.all(
+                      //         color: Colors.white,
+                      //       ),
+                      //       borderRadius: BorderRadius.only(
+                      //         topRight: Radius.circular(120),
+                      //         topLeft: Radius.circular(150),
+                      //         bottomLeft: Radius.circular(80),
+                      //       )),
+                      // ),
                     ],
                   ),
                 ],
@@ -164,7 +165,7 @@ class _resume_designState extends State<resume_design> {
                       ),
                       Text(
                         "     MATRIMONIAL\n"
-                        "     DATA",
+                        "     BIODATA",
                         style: TextStyle(
                             color: Color(0xFF48BAEC),
                             fontSize: MediaQuery.of(context).size.width*0.064,
@@ -367,7 +368,7 @@ class _resume_designState extends State<resume_design> {
                   Row(
                     children: [
                       Text(
-                        "     About Me",
+                        "     ABOUT ME",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -516,7 +517,7 @@ class _resume_designState extends State<resume_design> {
                         width: MediaQuery.of(context).size.width * .75,
                       ),
                       Text(
-                        "    $profession\n\n",
+                        "   $profession\n\n",
                         style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.04352, color: Colors.white),
                       ),
                     ],
@@ -575,7 +576,7 @@ class _resume_designState extends State<resume_design> {
                     ],
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.28,
                   ),
                   Row(
                     children: [
@@ -585,6 +586,13 @@ class _resume_designState extends State<resume_design> {
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: Image(
                           image: AssetImage("assets/logo.jpeg"),
+                        ),
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Image(
+                          image: AssetImage("assets/qrcoderr.png"),
                         ),
                       ),
                     ],
