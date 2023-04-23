@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 
 void main() => runApp(
       MaterialApp(
-        theme: ThemeData(fontFamily: "Arail"),
+        theme: ThemeData(fontFamily: "Arial"),
         debugShowCheckedModeBanner: false,
         home: resume_design(),
       ),
@@ -395,7 +395,7 @@ class _resume_designState extends State<resume_design> {
                   Row(
                     children: [
                       Text(
-                        "     EXPECTATION",
+                        "    EXPECTATION",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
