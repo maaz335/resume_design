@@ -8,6 +8,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:open_file/open_file.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -25,7 +26,6 @@ class _resume_designState extends State<resume_design> {
   String firstName = "Sourabh".toUpperCase();
   String lastName = "Mehndiratta".toUpperCase();
   String gender = "Male";
-  DateTime dateOfBirth = DateTime(1990);
   String age = '30';
   String religion = "Hindu";
   String kundliDosh = "Manglik";
@@ -49,6 +49,11 @@ class _resume_designState extends State<resume_design> {
   String address = 'H/10,Lane05,DHA2';
   Uint8List? _imageFile;
   ScreenshotController screenshotController = ScreenshotController();
+  String getDateTime(){
+    DateTime now = DateTime(1990);
+    String dateOfBirth = DateFormat('yyyy-MM-dd').format(now);
+    return dateOfBirth;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +219,7 @@ class _resume_designState extends State<resume_design> {
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        dateOfBirth.toString(),
+                        getDateTime(),
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -570,17 +575,44 @@ class _resume_designState extends State<resume_design> {
                     ],
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.38,
+                    height: MediaQuery.of(context).size.height * 0.32,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.05,),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Image(
+                          image: AssetImage("assets/logo.jpeg"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      padding: EdgeInsets.symmetric(horizontal: 70),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )),
                         onPressed: createPDF,
                         child: Text("Download"),
                       )),
                   Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      padding: EdgeInsets.symmetric(horizontal: 70),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )),
                         onPressed: _takeScreenshotandShare,
                         child: Text("Share"),
                       )),
@@ -601,7 +633,8 @@ class _resume_designState extends State<resume_design> {
       setState(() {
         _imageFile = image;
       });
-      final directory = (await getExternalStorageDirectory())!.path; // Use external storage directory
+      final directory = (await getExternalStorageDirectory())!
+          .path; // Use external storage directory
       Uint8List pngBytes = _imageFile!;
       File imgFile = File('$directory/screenshot.png');
       imgFile.writeAsBytes(pngBytes);
@@ -612,7 +645,6 @@ class _resume_designState extends State<resume_design> {
     });
   }
 
-
   createPDF() async {
     PdfDocument document = PdfDocument();
     final page = document.pages.add();
@@ -620,7 +652,8 @@ class _resume_designState extends State<resume_design> {
     final imageBytes = await readImageData();
     final image = PdfBitmap(imageBytes);
     final imageSize = Size(image.width.toDouble(), image.height.toDouble());
-    page.graphics.drawImage(image, Rect.fromLTWH(0, 0, imageSize.width, imageSize.height));
+    page.graphics.drawImage(
+        image, Rect.fromLTWH(0, 0, imageSize.width, imageSize.height));
     List<int> bytes = await document.save();
     document.dispose();
 
