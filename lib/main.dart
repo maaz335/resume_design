@@ -7,8 +7,9 @@ import 'package:flutter/rendering.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_file_plus/open_file_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -24,6 +25,7 @@ class resume_design extends StatefulWidget {
 }
 
 class _resume_designState extends State<resume_design> {
+  Permission? permission;
   String firstName = "Sourabh".toUpperCase();
   String lastName = "Mehndiratta".toUpperCase();
   String gender = "Male";
@@ -50,7 +52,8 @@ class _resume_designState extends State<resume_design> {
   String address = 'H/10,Lane05,DHA2';
   Uint8List? _imageFile;
   ScreenshotController screenshotController = ScreenshotController();
-  String getDateTime(){
+
+  String getDateTime() {
     DateTime now = DateTime(1990);
     String dateOfBirth = DateFormat('yyyy-MM-dd').format(now);
     return dateOfBirth;
@@ -168,7 +171,7 @@ class _resume_designState extends State<resume_design> {
                         "     BIODATA",
                         style: TextStyle(
                             color: Color(0xFF48BAEC),
-                            fontSize: MediaQuery.of(context).size.width*0.064,
+                            fontSize: MediaQuery.of(context).size.height*0.028,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -186,7 +189,7 @@ class _resume_designState extends State<resume_design> {
                         "     $lastName",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width*0.064,
+                            fontSize: MediaQuery.of(context).size.height*0.028,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -202,12 +205,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Gender: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         gender,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -217,12 +220,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Date of birth: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         getDateTime(),
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -232,12 +235,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Age: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         age,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -247,12 +250,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Religion: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         religion,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -262,12 +265,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Kundli Dosh: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         kundliDosh,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -277,12 +280,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Matrial Status: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         matrialStatus,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -292,12 +295,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Diet: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         diet,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -307,12 +310,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Drink: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize:MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         drink,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -322,12 +325,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Smoke: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         smoke,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -337,12 +340,14 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Disability: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize:
+                            MediaQuery.of(context).size.height*0.017,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         disability,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -352,12 +357,12 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         "        Height: ",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.0384, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.017, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         height,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.0384,
+                          fontSize: MediaQuery.of(context).size.height*0.016,
                         ),
                       )
                     ],
@@ -372,7 +377,7 @@ class _resume_designState extends State<resume_design> {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width*0.064),
+                            fontSize: MediaQuery.of(context).size.height*0.027),
                       ),
                     ],
                   ),
@@ -381,12 +386,15 @@ class _resume_designState extends State<resume_design> {
                       Expanded(
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.08,
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.064),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                              MediaQuery.of(context).size.height*0.025),
                           child: Text(
                             aboutMe,
                             softWrap: false,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.017),
                           ),
                         ),
                       ),
@@ -399,7 +407,7 @@ class _resume_designState extends State<resume_design> {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width*0.064),
+                            fontSize: MediaQuery.of(context).size.height*0.027),
                       ),
                     ],
                   ),
@@ -408,12 +416,15 @@ class _resume_designState extends State<resume_design> {
                       Expanded(
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.08,
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.064),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                              MediaQuery.of(context).size.height*0.025),
                           child: Text(
                             expectations,
                             softWrap: false,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.017),
                           ),
                         ),
                       ),
@@ -432,7 +443,8 @@ class _resume_designState extends State<resume_design> {
                         width: MediaQuery.of(context).size.width * 0.4,
                       ),
                       Container(
-                        padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.0512),
+                        padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.0512),
                         width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.2,
                         decoration: BoxDecoration(
@@ -440,7 +452,8 @@ class _resume_designState extends State<resume_design> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(100))),
                         child: CircleAvatar(
-                          radius: MediaQuery.of(context).size.width*0.12288, // Image radius
+                          radius: MediaQuery.of(context).size.width *
+                              0.12288, // Image radius
                           backgroundImage: NetworkImage(imageUrl),
                         ),
                       ),
@@ -456,69 +469,69 @@ class _resume_designState extends State<resume_design> {
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
                         "    Education",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.04352, fontWeight: FontWeight.bold),
+                            fontSize:MediaQuery.of(context).size.height*0.019, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
                         "     $educaion\n\n\n",
-                        style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.03584, color: Colors.white),
+                        style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.017, color: Colors.white),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
                         "         Income",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.04352, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.019, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
-                        "           $income\n\n\n",
-                        style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.03584, color: Colors.white),
+                        "          $income\n\n\n",
+                        style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.017, color: Colors.white),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
                         "   Profession",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width*0.04352, fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.height*0.019, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .75,
+                        width: MediaQuery.of(context).size.height*0.35,
                       ),
                       Text(
                         "   $profession\n\n",
-                        style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.04352, color: Colors.white),
+                        style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.017, color: Colors.white),
                       ),
                     ],
                   ),
@@ -528,7 +541,7 @@ class _resume_designState extends State<resume_design> {
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .54,
+                        width: MediaQuery.of(context).size.height*0.26,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -536,10 +549,10 @@ class _resume_designState extends State<resume_design> {
                           Text(
                             'CONTACT',
                             style: TextStyle(
-                                fontSize: MediaQuery.of(context).size.width*0.06144, fontWeight: FontWeight.bold),
+                                fontSize: MediaQuery.of(context).size.height*0.027, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.width*0.03072,
+                            height: MediaQuery.of(context).size.height*0.015,
                           ),
                           Row(
                             children: [
@@ -547,7 +560,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $phone",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.width*0.0384),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.017),
                               )
                             ],
                           ),
@@ -557,7 +570,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $email",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.width*0.03072),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.015),
                               )
                             ],
                           ),
@@ -567,7 +580,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $address",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.width*0.03072),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.015),
                               )
                             ],
                           ),
@@ -580,7 +593,9 @@ class _resume_designState extends State<resume_design> {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.05,),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.height*0.01,
+                      ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width * 0.5,
@@ -601,7 +616,7 @@ class _resume_designState extends State<resume_design> {
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.height*0.2,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
@@ -614,7 +629,7 @@ class _resume_designState extends State<resume_design> {
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.height*0.2,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
@@ -635,7 +650,7 @@ class _resume_designState extends State<resume_design> {
     );
   }
 
-  _takeScreenshotandShare() async {
+  _takeScreenshotandShare([bool share = true]) async {
     _imageFile = null;
     screenshotController
         .capture(delay: Duration(milliseconds: 10), pixelRatio: 2.0)
@@ -645,25 +660,33 @@ class _resume_designState extends State<resume_design> {
       });
       final directory = (await getExternalStorageDirectory())!
           .path; // Use external storage directory
+      print(directory);
       Uint8List pngBytes = _imageFile!;
       File imgFile = File('$directory/screenshot.png');
       imgFile.writeAsBytes(pngBytes);
       print("File Saved to Gallery");
-      await Share.file('Maaz', 'screenshot.png', pngBytes, 'image/png');
+
+      if (share) {
+        await Share.file('Maaz', 'screenshot.png', pngBytes, 'image/png');
+      }
     }).catchError((onError) {
       print(onError);
     });
   }
 
   createPDF() async {
-    PdfDocument document = PdfDocument();
-    final page = document.pages.add();
+    await _takeScreenshotandShare(false);
 
+    PdfDocument document = PdfDocument();
+    document.pageSettings.setMargins(0);
+    final page = document.pages.add();
     final imageBytes = await readImageData();
-    final image = PdfBitmap(imageBytes);
-    final imageSize = Size(image.width.toDouble(), image.height.toDouble());
+    final imageBitmap = PdfBitmap(imageBytes);
+
+    final imageSize = Size(imageBitmap.width.toDouble(), imageBitmap.height.toDouble());
     page.graphics.drawImage(
-        image, Rect.fromLTWH(0, 0, imageSize.width, imageSize.height));
+        imageBitmap, Rect.fromLTWH((page.size.width - (imageSize.width / imageSize.height * page.size.height)) / 2, 0, imageSize.width / imageSize.height * page.size.height, page.size.height));
+
     List<int> bytes = await document.save();
     document.dispose();
 
@@ -678,7 +701,7 @@ class _resume_designState extends State<resume_design> {
   }
 
   Future<Uint8List> readImageData() async {
-    final directory = (await getApplicationDocumentsDirectory()).path;
+    final directory = (await getExternalStorageDirectory())!.path;
     final file = File('$directory/screenshot.png');
     return await file.readAsBytes();
   }
