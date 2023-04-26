@@ -717,7 +717,7 @@ class _resume_designState extends State<resume_design> {
 
     final imageSize = Size(imageBitmap.width.toDouble(), imageBitmap.height.toDouble());
     page.graphics.drawImage(
-        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,imageSize.height/1.6));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
+        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,imageSize.height/1.5));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
 
     List<int> bytes = await document.save();
     document.dispose();
