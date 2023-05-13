@@ -95,7 +95,7 @@ class _resume_designState extends State<resume_design> {
                     Row(
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * .45,
+                          width: MediaQuery.of(context).size.width * .5,
                           height: MediaQuery.of(context).size.height * 0.2,
                         ),
                         Container(
@@ -106,7 +106,7 @@ class _resume_designState extends State<resume_design> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(70),
                                   bottomLeft: Radius.circular(70))),
-                          width: MediaQuery.of(context).size.width * .55,
+                          width: MediaQuery.of(context).size.width * .5,
                           height: MediaQuery.of(context).size.height * 0.2,
                         ),
                       ],
@@ -115,7 +115,7 @@ class _resume_designState extends State<resume_design> {
                       children: [
                         Container(
                           height: MediaQuery.of(context).size.height * 0.459,
-                          width: MediaQuery.of(context).size.width * .55,
+                          width: MediaQuery.of(context).size.width * .75,
                           decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.white,
@@ -286,7 +286,7 @@ class _resume_designState extends State<resume_design> {
                       Text(
                         matrialStatus,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.height*0.014,
+                          fontSize: MediaQuery.of(context).size.height*0.011,
                         ),
                       )
                     ],
@@ -542,7 +542,7 @@ class _resume_designState extends State<resume_design> {
                   Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.height*0.26,
+                        width: MediaQuery.of(context).size.height*0.3,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -550,7 +550,7 @@ class _resume_designState extends State<resume_design> {
                           Text(
                             'CONTACT',
                             style: TextStyle(
-                                fontSize: MediaQuery.of(context).size.height*0.022, fontWeight: FontWeight.bold),
+                                fontSize: MediaQuery.of(context).size.height*0.02, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height*0.012,
@@ -561,7 +561,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $phone",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.011),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.01),
                               )
                             ],
                           ),
@@ -571,7 +571,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $email",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.011),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.009),
                               )
                             ],
                           ),
@@ -581,7 +581,7 @@ class _resume_designState extends State<resume_design> {
                               Text(
                                 "  $address",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.011),
+                                    color: Colors.white, fontSize: MediaQuery.of(context).size.height*0.01),
                               )
                             ],
                           ),
@@ -618,7 +618,7 @@ class _resume_designState extends State<resume_design> {
                   ),
                   Visibility(
                     visible: downloadButtonVisibility,
-                    child: SizedBox(
+                    child: downloadButtonVisibility==true ? SizedBox(
                       width: MediaQuery.of(context).size.height*0.2,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -642,11 +642,13 @@ class _resume_designState extends State<resume_design> {
                         },
                         child: Text("Download"),
                       ),
+                    ) : SizedBox(
+                      width: MediaQuery.of(context).size.height*0.2,
                     ),
                   ),
                   Visibility(
                     visible: downloadButtonVisibility,
-                    child: SizedBox(
+                    child: downloadButtonVisibility == true ? SizedBox(
                       width: MediaQuery.of(context).size.height*0.2,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -671,6 +673,8 @@ class _resume_designState extends State<resume_design> {
                         },
                         child: Text("Share"),
                       ),
+                    ) : SizedBox(
+                      width: MediaQuery.of(context).size.height*0.2,
                     ),
                   ),
                 ],
@@ -717,7 +721,7 @@ class _resume_designState extends State<resume_design> {
 
     final imageSize = Size(imageBitmap.width.toDouble(), imageBitmap.height.toDouble());
     page.graphics.drawImage(
-        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,imageSize.height/1.5));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
+        imageBitmap, Rect.fromLTWH(0  , 0, page.size.width ,imageSize.height/1.45));//(page.size.width - (imageSize.width / imageSize.height * page.size.height)) /2  //imageSize.width / imageSize.height * page.size.height  //page.size.height
 
     List<int> bytes = await document.save();
     document.dispose();
