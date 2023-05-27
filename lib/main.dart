@@ -679,6 +679,7 @@ class _resume_designState extends State<resume_design> {
                   ),
                 ],
               ),
+
             ],
           ),
         ),
@@ -689,7 +690,7 @@ class _resume_designState extends State<resume_design> {
   _takeScreenshotandShare([bool share = true]) async {
     _imageFile = null;
     screenshotController
-        .capture(delay: Duration(milliseconds: 500), pixelRatio: 2.0)
+        .capture(delay: Duration(milliseconds: 500), pixelRatio: 1.0,)
         .then((Uint8List? image) async {
       setState(() {
         _imageFile = image;
