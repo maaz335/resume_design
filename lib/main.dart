@@ -715,6 +715,7 @@ class _resume_designState extends State<resume_design> {
 
     PdfDocument document = PdfDocument();
     document.pageSettings.setMargins(0);
+    document.pageSettings.size=PdfPageSize.a4;
     final page = document.pages.add();
     final imageBytes = await readImageData();
     final imageBitmap = PdfBitmap(imageBytes);
